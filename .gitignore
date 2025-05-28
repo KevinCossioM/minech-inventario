@@ -1,0 +1,12 @@
+# Archivos de compilacion
+target/
+*.jar
+*.class
+
+# Archivos privados NetBeans
+nbproject/private/
+*.log
+
+# Archivos sistema operativo
+.DS_Store
+Thumbs.db
