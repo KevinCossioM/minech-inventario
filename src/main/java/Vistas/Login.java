@@ -17,13 +17,7 @@ public class Login extends javax.swing.JFrame {
     this.setSize(new Dimension(845, 471));
     controlador = new Ctrl_Usuario();
     
-    // Cargar el ícono correctamente desde el paquete "Icons"
-    java.net.URL url = getClass().getClassLoader().getResource("/Icons/icon-gestion.png");
-if (url == null) {
-    System.out.println("No se pudo encontrar la imagen usando ClassLoader.");
-} else {
-    jLabel2.setIcon(new javax.swing.ImageIcon(url));
-}
+
 
 }
 
@@ -213,11 +207,12 @@ if (url == null) {
 
     // Usar el controlador para validar
     if (controlador.validarUsuario(usuario, password)) {
+                    JOptionPane.showMessageDialog(null, "Datos ingresados Correctos Ingresando como Administrador");
         MenuPrincipal menu = new MenuPrincipal();
         menu.setVisible(true);
         this.dispose();
     } else {
-        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+        JOptionPane.showMessageDialog(null, "Datos ingresados Incorrectos Vuelva a intentarlo o contacte con soporte");
     }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_IniciarSesionActionPerformed
