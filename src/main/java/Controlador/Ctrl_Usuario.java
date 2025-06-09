@@ -1,15 +1,15 @@
-
 package Controlador;
-import DAO.UsuarioDAO;
+
+import Servicio.UsuarioServicio;
+
 public class Ctrl_Usuario {
-    private UsuarioDAO usuarioDAO;
+    private UsuarioServicio usuarioServicio;
 
     public Ctrl_Usuario() {
-        usuarioDAO = new UsuarioDAO();
+        this.usuarioServicio = new UsuarioServicio();
     }
 
     public boolean validarUsuario(String usuario, String password) {
-        return usuarioDAO.validar(usuario, password);
+        return usuarioServicio.validarUsuario(usuario, password);
     }
-    
 }
