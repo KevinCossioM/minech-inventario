@@ -17,6 +17,7 @@ public class Login extends javax.swing.JFrame {
     this.setSize(new Dimension(845, 471));
     controlador = new Ctrl_Usuario();
     
+    
 
 
 }
@@ -207,7 +208,7 @@ public class Login extends javax.swing.JFrame {
 
     // Usar el controlador para validar
     if (controlador.validarUsuario(usuario, password)) {
-                    JOptionPane.showMessageDialog(null, "Datos ingresados Correctos Ingresando como Administrador");
+       JOptionPane.showMessageDialog(null, "Datos ingresados Correctos Ingresando como Administrador");
         MenuPrincipal menu = new MenuPrincipal();
         menu.setVisible(true);
         this.dispose();
