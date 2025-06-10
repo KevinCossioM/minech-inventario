@@ -217,7 +217,10 @@ Controlador = new Ctrl_Usuario(usuarioServicio);
 
             if (valido) {
                 JOptionPane.showMessageDialog(this, "Correcto ingresando como administrador");
-                // abrir siguiente ventana o lo que corresponda
+                MenuPrincipal2 menu=new MenuPrincipal2();
+                menu.setVisible(true);
+                this.dispose();
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
             }
