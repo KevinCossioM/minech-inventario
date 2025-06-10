@@ -1,21 +1,27 @@
 
 package Vistas;
 
-import Controlador.Ctrl_Usuario;
-//import DAO.UsuarioDAO;
+import DAO.IUsuarioDAO;
+import DAO.UsuarioDAO;
+import Servicio.UsuarioServicio;
+import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 
 public class Login extends javax.swing.JFrame {
-    private Ctrl_Usuario controlador;
+    private Ctrl_Usuario Controlador;
     public Login() {
     initComponents();
     this.setResizable(false);
     this.setLocationRelativeTo(null);
     this.setTitle("Login - Gestión de Inventario Minech");
     this.setSize(new Dimension(845, 471));
-    controlador = new Ctrl_Usuario();
+    
+IUsuarioDAO usuarioDAO = new UsuarioDAO();
+UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioDAO);
+Controlador = new Ctrl_Usuario(usuarioServicio);
+    
     
     
 
@@ -203,19 +209,23 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void jButton_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesionActionPerformed
- String usuario = txt_usuario.getText();
-    String password = new String(txt_password.getPassword());
+     String usuario = txt_usuario.getText();
+        String password = new String(txt_password.getPassword());
 
-    // Usar el controlador para validar
-    if (controlador.validarUsuario(usuario, password)) {
-       JOptionPane.showMessageDialog(null, "Datos ingresados Correctos Ingresando como Administrador");
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setVisible(true);
-        this.dispose();
-    } else {
-        JOptionPane.showMessageDialog(null, "Datos ingresados Incorrectos Vuelva a intentarlo o contacte con soporte");
-    }
-        // TODO add your handling code here:
+        try {
+            boolean valido = Controlador.validarUsuario(usuario, password);
+
+            if (valido) {
+                JOptionPane.showMessageDialog(this, "Correcto ingresando como administrador");
+                // abrir siguiente ventana o lo que corresponda
+            } else {
+                JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al validar usuario");
+        }
+            // TODO add your handling code here:
     }//GEN-LAST:event_jButton_IniciarSesionActionPerformed
 
     /**

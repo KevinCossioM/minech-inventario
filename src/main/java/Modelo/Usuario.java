@@ -1,6 +1,5 @@
 package Modelo;
 
-
 public class Usuario {
     private String usuario;
     private String password;
@@ -12,9 +11,19 @@ public class Usuario {
         this.password = password;
     }
 
-    // getters y setters
-    public String getUsuario() { return usuario; }
-    public void setUsuario(String usuario) { this.usuario = usuario; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

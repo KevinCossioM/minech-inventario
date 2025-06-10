@@ -1,23 +1,16 @@
-
 package Servicio;
-import DAO.UsuarioDAO;
+
+import DAO.IUsuarioDAO;
 
 public class UsuarioServicio {
-    private UsuarioDAO usuarioDAO;
 
-    public UsuarioServicio() {
-        this.usuarioDAO = new UsuarioDAO();
+    private final IUsuarioDAO usuarioDAO;
+
+    public UsuarioServicio(IUsuarioDAO usuarioDAO) {
+        this.usuarioDAO = usuarioDAO;
     }
 
-    public boolean validarUsuario(String usuario, String password) {
-        if (usuario == null || usuario.isEmpty() || password == null || password.isEmpty()) {
-            System.out.println("Usuario o contraseña vacíos");
-            return false;
-        }
-
-        // Aquí puedes agregar más validaciones si quieres
-
-        // Llama al DAO para validar
+    public boolean validarUsuario(String usuario, String password) throws Exception {
         return usuarioDAO.validar(usuario, password);
     }
 }
