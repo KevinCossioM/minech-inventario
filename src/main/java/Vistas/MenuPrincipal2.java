@@ -1,11 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Vistas;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.DesktopPaneUI;
 
 /**
  *
@@ -13,15 +14,18 @@ import javax.swing.JDesktopPane;
  */
 public class MenuPrincipal2 extends javax.swing.JFrame {
 
-    public static JDesktopPane jDesktopPane_menu;
- 
-    public MenuPrincipal2() {
-           initComponents();
+    private JDesktopPane jDesktopPane_menu;
+   public MenuPrincipal2() {
+        initComponents();
     this.setResizable(false);
     this.setLocationRelativeTo(null);
     this.setTitle("Login - Gestión de Inventario Minech");
     this.setSize(new Dimension(1150, 900));
+
+    jDesktopPane_menu = new JDesktopPane();
+    this.getContentPane().add(jDesktopPane_menu, BorderLayout.CENTER);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -379,7 +383,23 @@ public class MenuPrincipal2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Click en Agregar producto");
+
+    RegistrarProducto registrarProducto = new RegistrarProducto();
+
+    registrarProducto.setSize(400, 300); // Asegura tamaño
+    registrarProducto.setClosable(true); // Opcional
+    registrarProducto.setMaximizable(true); // Opcional
+
+    jDesktopPane_menu.add(registrarProducto);
+    registrarProducto.setVisible(true);
+
+    try {
+        registrarProducto.setSelected(true);
+    } catch (java.beans.PropertyVetoException e) {
+        JOptionPane.showMessageDialog(this, "Error al seleccionar la ventana", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    // Opcional: cerrar o esconder la ventana actual
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -485,3 +505,4 @@ public class MenuPrincipal2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
+
