@@ -1,25 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Vistas;
 
 import java.awt.Dimension;
-
+import controlador.Ctrl_Producto;
+import DAO.ProductoDAO;
+import Modelo.Producto;
+import Servicio.ProductoServicio; 
+import javax.swing.JOptionPane;
 /**
  *
  * @author Brian Rivera
  */
 public class RegistrarProducto extends javax.swing.JInternalFrame {
+    private Ctrl_Producto ctrl_Producto;
 
     /**
      * Creates new form RegistrarProducto
      */
     public RegistrarProducto() {
-        initComponents();
-    this.setResizable(false);
-    this.setTitle("Registrar Producto - Gestión de Inventario Minech");
-    this.setSize(new Dimension(569, 412));
+       initComponents();
+        this.setClosable(true);
+        this.setIconifiable(true);
+        this.setMaximizable(true);
+        this.setTitle("Registrar Producto");
+        this.setSize(549, 565);
+this.ctrl_Producto = new Ctrl_Producto(new ProductoServicio(new ProductoDAO()));
+
     }
 
     /**
@@ -38,16 +44,16 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
         txt_codigo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox_categoria = new javax.swing.JComboBox<>();
+        txt_categoria = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         txt_proveedor = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txt_nombre2 = new javax.swing.JTextField();
-        txt_precio = new javax.swing.JTextField();
+        txt_nombre = new javax.swing.JTextField();
+        txt_stock = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txt_precio1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButt_Guardar = new javax.swing.JButton();
+        jBut_limpiar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -93,15 +99,15 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
         jLabel7.setText("Stock");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, -1));
 
-        jComboBox_categoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jComboBox_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione categoria:", "Item 2", "Item 3", "Item 4" }));
-        jComboBox_categoria.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jComboBox_categoria.addActionListener(new java.awt.event.ActionListener() {
+        txt_categoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione categoria:", "Item 2", "Item 3", "Item 4" }));
+        txt_categoria.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_categoriaActionPerformed(evt);
+                txt_categoriaActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox_categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 430, 30));
+        getContentPane().add(txt_categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 430, 30));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
@@ -120,13 +126,18 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
         jLabel9.setText("Codigo del Producto");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, -1, -1));
 
-        txt_nombre2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_nombre2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txt_nombre2.setMargin(new java.awt.Insets(5, 10, 5, 10));
-        getContentPane().add(txt_nombre2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 430, 30));
+        txt_nombre.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txt_nombre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        txt_nombre.setMargin(new java.awt.Insets(5, 10, 5, 10));
+        txt_nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txt_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 430, 30));
 
-        txt_precio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        getContentPane().add(txt_precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 170, 30));
+        txt_stock.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        getContentPane().add(txt_stock, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 170, 30));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
@@ -137,27 +148,27 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
         txt_precio1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         getContentPane().add(txt_precio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 190, 30));
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButt_Guardar.setBackground(new java.awt.Color(0, 204, 0));
+        jButt_Guardar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButt_Guardar.setForeground(new java.awt.Color(255, 255, 255));
+        jButt_Guardar.setText("Guardar");
+        jButt_Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButt_GuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 110, 40));
+        getContentPane().add(jButt_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, 110, 40));
 
-        jButton2.setBackground(new java.awt.Color(204, 0, 51));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Limpiar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBut_limpiar.setBackground(new java.awt.Color(204, 0, 51));
+        jBut_limpiar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jBut_limpiar.setForeground(new java.awt.Color(255, 255, 255));
+        jBut_limpiar.setText("Limpiar");
+        jBut_limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBut_limpiarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 110, 40));
+        getContentPane().add(jBut_limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 110, 40));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -167,23 +178,61 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_categoriaActionPerformed
+    private void txt_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_categoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_categoriaActionPerformed
+    }//GEN-LAST:event_txt_categoriaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButt_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButt_GuardarActionPerformed
+          String nombre = txt_nombre.getText().trim();
+    String categoria = (String) txt_categoria.getSelectedItem();
+    String codigo = txt_codigo.getText().trim();
+    String proveedor = txt_proveedor.getText().trim();
+    String precio = txt_precio1.getText().trim();
+    String stock = txt_stock.getText().trim();
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    // Validar que no quede la opción por defecto seleccionada en categoría
+    if ("Seleccione categoria:".equals(categoria)) {
+        JOptionPane.showMessageDialog(this, "Seleccione una categoría válida", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    try {
+        boolean guardado = ctrl_Producto.guardarProducto(nombre, categoria, codigo, proveedor, precio, stock);
+        if (guardado) {
+            JOptionPane.showMessageDialog(this, "Producto registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (IllegalArgumentException e) {
+        JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.WARNING_MESSAGE);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al registrar producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButt_GuardarActionPerformed
+private void limpiarCampos() {
+    txt_nombre.setText("");
+    txt_categoria.setSelectedIndex(0); // O el índice que corresponda a "Seleccione categoria:"
+    txt_codigo.setText("");
+    txt_proveedor.setText("");
+    txt_precio1.setText("");
+    txt_stock.setText("");
+}
+
+    private void jBut_limpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBut_limpiarActionPerformed
+    limpiarCampos();
+        
+        
+    }//GEN-LAST:event_jBut_limpiarActionPerformed
+
+    private void txt_nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_txt_nombreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox_categoria;
+    private javax.swing.JButton jBut_limpiar;
+    private javax.swing.JButton jButt_Guardar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -194,10 +243,12 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox<String> txt_categoria;
     private javax.swing.JTextField txt_codigo;
-    private javax.swing.JTextField txt_nombre2;
-    private javax.swing.JTextField txt_precio;
+    private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_precio1;
     private javax.swing.JTextField txt_proveedor;
+    private javax.swing.JTextField txt_stock;
     // End of variables declaration//GEN-END:variables
 }
+

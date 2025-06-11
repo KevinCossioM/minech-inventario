@@ -217,7 +217,7 @@ Controlador = new Ctrl_Usuario(usuarioServicio);
 
             if (valido) {
                 JOptionPane.showMessageDialog(this, "Correcto ingresando como administrador");
-                MenuPrincipal2 menu=new MenuPrincipal2();
+                MenuPrincipal menu=new MenuPrincipal();
                 menu.setVisible(true);
                 this.dispose();
                 
