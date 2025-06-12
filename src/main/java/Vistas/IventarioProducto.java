@@ -29,8 +29,6 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_productos = new javax.swing.JTable();
-        jButton_actualizar = new javax.swing.JButton();
-        jButton_eliminar = new javax.swing.JButton();
         Logo1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -62,24 +60,6 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable_productos);
-
-        jButton_actualizar.setBackground(new java.awt.Color(51, 204, 0));
-        jButton_actualizar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_actualizar.setText("Actualizar");
-        jButton_actualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_actualizarActionPerformed(evt);
-            }
-        });
-
-        jButton_eliminar.setBackground(new java.awt.Color(255, 51, 51));
-        jButton_eliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton_eliminar.setText("Eliminar");
-        jButton_eliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_eliminarActionPerformed(evt);
-            }
-        });
 
         Logo1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         Logo1.setForeground(new java.awt.Color(255, 255, 255));
@@ -125,8 +105,6 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
         jComboBox_iva.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione iva:", "No grava iva", "12%", "14%" }));
 
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton_actualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton_eliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(Logo1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -181,23 +159,14 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
                         .addContainerGap(38, Short.MAX_VALUE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton_actualizar)
-                            .addComponent(jButton_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(44, 44, 44))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(Logo1)
                 .addGap(24, 24, 24)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jButton_actualizar)
-                        .addGap(8, 8, 8)
-                        .addComponent(jButton_eliminar)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -231,104 +200,9 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_actualizarActionPerformed
-
-        Producto producto = new Producto();
-        Ctrl_Producto controlProducto = new Ctrl_Producto();
-        String iva = "";
-        String categoria = "";
-        iva = jComboBox_iva.getSelectedItem().toString().trim();
-        categoria = jComboBox_categoria.getSelectedItem().toString().trim();
-
-        //validar campos
-        if (txt_nombre.getText().isEmpty() || txt_cantidad.getText().isEmpty() || txt_precio.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Complete todos los campos");
-        } else {
-            if (iva.equalsIgnoreCase("Seleccione iva:")) {
-                JOptionPane.showMessageDialog(null, "Seleccione iva.");
-            } else {
-                if (categoria.equalsIgnoreCase("Seleccione categoria:")) {
-                    JOptionPane.showMessageDialog(null, "Seleccione categoria");
-                } else {
-                    try {
-                        producto.setNombre(txt_nombre.getText().trim());
-                        producto.setCantidad(Integer.parseInt(txt_cantidad.getText().trim()));
-                        String precioTXT = "";
-                        double Precio = 0.0;
-                        precioTXT = txt_precio.getText().trim();
-                        boolean aux = false;
-                        /*
-                        *Si el usuario ingresa , (coma) como punto decimal,
-                        lo transformamos a punto (.)
-                        */
-                        for (int i = 0; i < precioTXT.length(); i++) {
-                            if (precioTXT.charAt(i) == ',') {
-                                String precioNuevo = precioTXT.replace(",", ".");
-                                Precio = Double.parseDouble(precioNuevo);
-                                aux = true;
-                            }
-                        }
-                        //evaluar la condicion
-                        if (aux == true) {
-                            producto.setPrecio(Precio);
-                        } else {
-                            Precio = Double.parseDouble(precioTXT);
-                            producto.setPrecio(Precio);
-                        }
-
-                        producto.setDescripcion(txt_descripcion.getText().trim());
-                        //Porcentaje IVA
-                        if (iva.equalsIgnoreCase("No grava iva")) {
-                            producto.setPorcentajeIva(0);
-                        } else if (iva.equalsIgnoreCase("12%")) {
-                            producto.setPorcentajeIva(12);
-                        } else if (iva.equalsIgnoreCase("14%")) {
-                            producto.setPorcentajeIva(14);
-                        }
-
-                        //idcategoria - cargar metodo que obtiene el id de categoria
-                        this.IdCategoria();
-                        producto.setIdCategoria(obtenerIdCategoriaCombo);
-                        producto.setEstado(1);
-
-                        if (controlProducto.actualizar(producto, idProducto)) {
-                            JOptionPane.showMessageDialog(null, "Registro Actualizado");
-                            this.CargarComboCategoria();
-                            this.CargarTablaProductos();
-                            this.jComboBox_iva.setSelectedItem("Seleccione iva:");
-                            this.Limpiar();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Error al Actualizar");
-                        }
-                    } catch (HeadlessException | NumberFormatException e) {
-                        System.out.println("Error en: " + e);
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_jButton_actualizarActionPerformed
-
-    private void jButton_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarActionPerformed
-        Ctrl_Producto controlProducto = new Ctrl_Producto();
-        if (idProducto == 0) {
-            JOptionPane.showMessageDialog(null, "¡Seleccione un Producto!");
-        } else {
-            if (!controlProducto.eliminar(idProducto)) {
-                JOptionPane.showMessageDialog(null, "¡Producto Eliminado!");
-                this.CargarTablaProductos();
-                this.CargarComboCategoria();
-                this.Limpiar();
-            } else {
-                JOptionPane.showMessageDialog(null, "¡Error al eliminar producto!");
-            }
-        }
-    }//GEN-LAST:event_jButton_eliminarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Logo1;
-    private javax.swing.JButton jButton_actualizar;
-    private javax.swing.JButton jButton_eliminar;
     private javax.swing.JComboBox<String> jComboBox_categoria;
     private javax.swing.JComboBox<String> jComboBox_iva;
     private javax.swing.JDesktopPane jDesktopPane1;
