@@ -19,12 +19,12 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
      */
     public RegistrarProducto() {
        initComponents();
-        this.setClosable(true);
+       this.setClosable(true);
         this.setIconifiable(true);
         this.setMaximizable(true);
         this.setTitle("Registrar Producto");
         this.setSize(549, 565);
-this.ctrl_Producto = new Ctrl_Producto(new ProductoServicio(new ProductoDAO()));
+        this.ctrl_Producto = new Ctrl_Producto(new ProductoServicio(new ProductoDAO()));
 
     }
 
@@ -100,7 +100,7 @@ this.ctrl_Producto = new Ctrl_Producto(new ProductoServicio(new ProductoDAO()));
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 340, -1, -1));
 
         txt_categoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txt_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione categoria:", "Item 2", "Item 3", "Item 4" }));
+        txt_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione categoria:", "Bebidas", "Caramelos", "Galletas" }));
         txt_categoria.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         txt_categoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,32 +183,44 @@ this.ctrl_Producto = new Ctrl_Producto(new ProductoServicio(new ProductoDAO()));
     }//GEN-LAST:event_txt_categoriaActionPerformed
 
     private void jButt_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButt_GuardarActionPerformed
-          String nombre = txt_nombre.getText().trim();
-    String categoria = (String) txt_categoria.getSelectedItem();
-    String codigo = txt_codigo.getText().trim();
-    String proveedor = txt_proveedor.getText().trim();
-    String precio = txt_precio1.getText().trim();
-    String stock = txt_stock.getText().trim();
+     
+        
+        
+        String nombre = txt_nombre.getText().trim();
+        String categoria = (String) txt_categoria.getSelectedItem();
+        String codigo = txt_codigo.getText().trim();
+        String proveedor = txt_proveedor.getText().trim();
+        String precioStr = txt_precio1.getText().trim();
+        String stockStr = txt_stock.getText().trim();
 
-    // Validar que no quede la opción por defecto seleccionada en categoría
-    if ("Seleccione categoria:".equals(categoria)) {
-        JOptionPane.showMessageDialog(this, "Seleccione una categoría válida", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        boolean guardado = ctrl_Producto.guardarProducto(nombre, categoria, codigo, proveedor, precio, stock);
-        if (guardado) {
-            JOptionPane.showMessageDialog(this, "Producto registrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            limpiarCampos();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo registrar el producto.", "Error", JOptionPane.ERROR_MESSAGE);
+        if (nombre.isEmpty() || categoria.equals("Seleccione categoria:") || codigo.isEmpty() ||
+            proveedor.isEmpty() || precioStr.isEmpty() || stockStr.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, complete todos los campos.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-    } catch (IllegalArgumentException e) {
-        JOptionPane.showMessageDialog(this, e.getMessage(), "Error de validación", JOptionPane.WARNING_MESSAGE);
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al registrar producto: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-    }
+
+        try {
+            double precio = Double.parseDouble(precioStr);
+            int stock = Integer.parseInt(stockStr);
+
+            Producto producto = new Producto();
+            producto.setNombre(nombre);
+            producto.setCategoria(categoria);
+            producto.setCodigo(codigo);
+            producto.setProveedor(proveedor);
+            producto.setPrecioUnitario(precio);
+            producto.setStock(stock);
+
+            boolean guardado = ctrl_Producto.guardarProducto(producto);
+            if (guardado) {
+                JOptionPane.showMessageDialog(null, "Producto registrado exitosamente.");
+                limpiarCampos();
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al registrar el producto.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Ingrese valores numéricos válidos para precio y stock.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButt_GuardarActionPerformed
 private void limpiarCampos() {
     txt_nombre.setText("");
