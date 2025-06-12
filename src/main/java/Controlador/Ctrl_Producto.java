@@ -1,5 +1,6 @@
 package controlador;
 
+import Modelo.Producto;
 import Servicio.ProductoServicio;
 
 public class Ctrl_Producto {
@@ -10,12 +11,19 @@ public class Ctrl_Producto {
         this.productoServicio = productoServicio;
     }
 
-    public boolean guardarProducto(String nombre, String categoria, String codigo, String proveedor, String precio, String stock) {
-        try {
-            return productoServicio.registrarProducto(nombre, categoria, codigo, proveedor, precio, stock);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
+public boolean guardarProducto(Producto producto) {
+    try {
+        return productoServicio.registrarProducto(
+            producto.getNombre(),
+            producto.getCategoria(),
+            producto.getCodigo(),
+            producto.getProveedor(),
+            String.valueOf(producto.getPrecioUnitario()),
+            String.valueOf(producto.getStock())
+        );
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
     }
+}
 }
