@@ -15,7 +15,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -298,9 +298,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         RegistrarProducto registrarProducto = new RegistrarProducto();
         panelEscritorio.add(registrarProducto);
         registrarProducto.setVisible(true);
-       int x = (panelEscritorio.getWidth() - registrarProducto.getWidth()) / 2;
-    int y = (panelEscritorio.getHeight() - registrarProducto.getHeight()) / 2;
-    registrarProducto.setLocation(x, y);
+        int x = (panelEscritorio.getWidth() - registrarProducto.getWidth()) / 2;
+        int y = (panelEscritorio.getHeight() - registrarProducto.getHeight()) / 2;
+        registrarProducto.setLocation(x, y);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -308,16 +308,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         panelEscritorio.add(iventarioProducto);
         iventarioProducto.setVisible(true);
         int x = (panelEscritorio.getWidth() - iventarioProducto.getWidth()) / 2;
-    int y = (panelEscritorio.getHeight() - iventarioProducto.getHeight()) / 2;
-    iventarioProducto.setLocation(x, y);
+        int y = (panelEscritorio.getHeight() - iventarioProducto.getHeight()) / 2;
+        iventarioProducto.setLocation(x, y);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        Alertas alertas = new Alertas();
+        panelEscritorio.add(alertas);
+        alertas.setVisible(true);
+        int x = (panelEscritorio.getWidth() - alertas.getWidth()) / 2;
+        int y = (panelEscritorio.getHeight() - alertas.getHeight()) / 2;
+        alertas.setLocation(x, y);
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

@@ -2,9 +2,11 @@ package DAO;
 
 import Modelo.Producto;
 import conexion.Conexion;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductoDAO implements IProductoDAO {
 
@@ -25,4 +27,31 @@ public class ProductoDAO implements IProductoDAO {
             return ps.executeUpdate() > 0;
         }
     }
+    @Override
+    public List<Producto> obtenerProductosBajoStock(int limite) {
+        List<Producto> lista = new ArrayList<>();
+        String sql = "SELECT nombre, categoria, codigo, proveedor, precio_unitario, stock FROM productos WHERE stock < ?";
+        
+        try (Connection con = Conexion.conectar();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            ps.setInt(1, limite);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                Producto p = new Producto();
+                p.setNombre(rs.getString("nombre"));
+                p.setCategoria(rs.getString("categoria"));
+                p.setCodigo(rs.getString("codigo"));
+                p.setProveedor(rs.getString("proveedor"));
+                p.setPrecioUnitario(rs.getDouble("precio_unitario"));
+                p.setStock(rs.getInt("stock"));
+                lista.add(p);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+    
 }
