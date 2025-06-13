@@ -2,7 +2,10 @@ package controlador;
 
 import Modelo.Producto;
 import Servicio.ProductoServicio;
-
+/**
+ *
+ * @author Brian Rivera
+ */
 public class Ctrl_Producto {
 
     private final ProductoServicio productoServicio;

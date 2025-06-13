@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import DAO.IUsuarioDAO;
@@ -7,28 +6,27 @@ import Servicio.UsuarioServicio;
 import controlador.Ctrl_Usuario;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-
-
+/**
+ *
+ * @author Brian Rivera
+ */
 public class Login extends javax.swing.JFrame {
+
     private Ctrl_Usuario Controlador;
+
     public Login() {
-    initComponents();
-    this.setResizable(false);
-    this.setLocationRelativeTo(null);
-    this.setTitle("Login - Gestión de Inventario Minech");
-    this.setSize(new Dimension(845, 471));
-    
-IUsuarioDAO usuarioDAO = new UsuarioDAO();
-UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioDAO);
-Controlador = new Ctrl_Usuario(usuarioServicio);
-    
-    
-    
+        initComponents();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Login - Gestión de Inventario Minech");
+        this.setSize(new Dimension(845, 471));
 
+        IUsuarioDAO usuarioDAO = new UsuarioDAO();
+        UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioDAO);
+        Controlador = new Ctrl_Usuario(usuarioServicio);
 
-}
+    }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,7 +207,7 @@ Controlador = new Ctrl_Usuario(usuarioServicio);
     }//GEN-LAST:event_txt_passwordActionPerformed
 
     private void jButton_IniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_IniciarSesionActionPerformed
-     String usuario = txt_usuario.getText();
+        String usuario = txt_usuario.getText();
         String password = new String(txt_password.getPassword());
 
         try {
@@ -217,10 +215,10 @@ Controlador = new Ctrl_Usuario(usuarioServicio);
 
             if (valido) {
                 JOptionPane.showMessageDialog(this, "Correcto ingresando como administrador");
-                MenuPrincipal menu=new MenuPrincipal();
+                MenuPrincipal menu = new MenuPrincipal();
                 menu.setVisible(true);
                 this.dispose();
-                
+
             } else {
                 JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos");
             }
@@ -228,7 +226,7 @@ Controlador = new Ctrl_Usuario(usuarioServicio);
             e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error al validar usuario");
         }
-            // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton_IniciarSesionActionPerformed
 
     /**
@@ -281,9 +279,4 @@ Controlador = new Ctrl_Usuario(usuarioServicio);
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
 
-
-    
 }
-
-
-
