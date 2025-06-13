@@ -335,11 +335,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+Soporte soporte = new Soporte();
+    panelEscritorio.add(soporte);
+    soporte.setVisible(true);    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+int opcion = javax.swing.JOptionPane.showConfirmDialog(
+        this,
+        "¿Estás seguro de que deseas salir del programa?",
+        "Confirmar salida",
+        javax.swing.JOptionPane.YES_NO_OPTION,
+        javax.swing.JOptionPane.QUESTION_MESSAGE
+    );
+
+    if (opcion == javax.swing.JOptionPane.YES_OPTION) {
+        System.exit(0);
+    }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

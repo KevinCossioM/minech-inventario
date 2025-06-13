@@ -97,13 +97,13 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
         Actualizar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         txt_cantidad = new javax.swing.JTextField();
-        Limpiar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setResizable(true);
 
-        PanelIventario.setBackground(new java.awt.Color(0, 153, 255));
+        PanelIventario.setBackground(new java.awt.Color(204, 204, 204));
 
         jTable_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -172,10 +172,10 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
 
         txt_cantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        Limpiar.setText("Limpiar");
-        Limpiar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LimpiarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -193,7 +193,7 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
         PanelIventario.setLayer(Actualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         PanelIventario.setLayer(Eliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         PanelIventario.setLayer(txt_cantidad, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        PanelIventario.setLayer(Limpiar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        PanelIventario.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout PanelIventarioLayout = new javax.swing.GroupLayout(PanelIventario);
         PanelIventario.setLayout(PanelIventarioLayout);
@@ -237,7 +237,7 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
                                 .addGroup(PanelIventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(Actualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(Eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(25, 25, 25))))
         );
         PanelIventarioLayout.setVerticalGroup(
@@ -251,7 +251,7 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
                         .addGap(32, 32, 32)
                         .addComponent(Eliminar)
                         .addGap(28, 28, 28)
-                        .addComponent(Limpiar))
+                        .addComponent(jButton1))
                     .addGroup(PanelIventarioLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -349,22 +349,22 @@ public class IventarioProducto extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Selecciona una fila para eliminar.");
     }    }//GEN-LAST:event_EliminarActionPerformed
 
-    private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         txt_nombre.setText("");
         txt_precio.setText("");
         txt_cantidad.setText("");
         txt_descripcion.setText("");
         jComboBox_categoria.setSelectedIndex(0); // Asume que el primer ítem es el predeterminado
         jTable_productos.clearSelection(); // Quita la selección en la tabla
-    }//GEN-LAST:event_LimpiarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Actualizar;
     private javax.swing.JButton Eliminar;
-    private javax.swing.JButton Limpiar;
     private javax.swing.JLabel Logo1;
     private javax.swing.JDesktopPane PanelIventario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox_categoria;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
