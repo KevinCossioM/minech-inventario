@@ -232,7 +232,7 @@ public class Configuracion extends javax.swing.JFrame {
 
         jLabel2.setText("Usuario:");
 
-        jLabel3.setText("Administrador:");
+        jLabel3.setText("Administrador");
 
         jLabel4.setText("Nueva contraseña:");
 
