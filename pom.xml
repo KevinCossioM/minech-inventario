@@ -46,7 +46,7 @@
           <groupId>org.junit.jupiter</groupId>
           <artifactId>junit-jupiter-api</artifactId>
           <version>5.11.4</version>
-          <scope>test</scope>
+          <type>jar</type>
         </dependency>
         
 <dependency>
@@ -75,7 +75,23 @@
         <artifactId>AbsoluteLayout</artifactId>
       <version>RELEASE220</version>
     </dependency>
+    <!-- API de JUnit (ya la tienes) -->
+
+<!-- ENGINE para ejecutar pruebas -->
+<dependency>
+  <groupId>org.junit.jupiter</groupId>
+  <artifactId>junit-jupiter-engine</artifactId>
+  <version>5.11.4</version>
+  <scope>test</scope>
+</dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+      <version>5.14.2</version>
+      <type>jar</type>
+    </dependency>
 </dependencies>
+
 
      <!-- PLUGIN para JAVAFX -->
 <build>
@@ -100,7 +116,16 @@
 
     </plugins>
 </build>
+<reporting>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-report-plugin</artifactId>
+      <version>3.2.2</version>
+    </plugin>
+  </plugins>
+</reporting>
 
     
     
-</project>
+</project>  
